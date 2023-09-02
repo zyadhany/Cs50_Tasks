@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+{% block style %}
+<link rel="stylesheet" href="/static/css/postProf.css" />
+{% endblock %}
+{% block main %}
+<main>
+{% for post in posts %}
+  <div class="post">
+    <div class="post-top">
+      <div class="left-top" onclick="goProf({{post['user_id']}})">
+        <img
+          src="/static/images/user_image/{{post['user_id']}}.png"
+          alt="user_image"
+          width="50px"
+          height="50px"
+        />
+        <div>
+          <h4>{{post['name']}}</h4>
+          <p>{{post['date']}}</p>
+        </div>
+      </div>
+      <div
+      {% if me['id'] != post['user_id'] %}
+      style="visibility: hidden;"
+      {% endif %}
+      onclick="delete_post({{post.id}})"
+      >
+        <img
+          src="/static/images/icons/trash.svg"
+          alt="trash"
+          width="35px"
+          height="35px"
+        />
+      </div>
+    </div>
+    <img src="/static/images/post_images/{{post['id']}}.png" alt="italy" />
+    <p style="text-align: justify">
+      {{post['text']}}
+    </p>
+    <div class="post-bottom">
+      <button>
+        <img
+          {% if post.islike %}
+          onclick="dislike({{post.id}})"
+          src="/static/images/icons/heart-active.svg"
+          {% else %}
+          onclick="like({{post.id}})"
+          src="/static/images/icons/heart-inactive.svg"
+          {% endif %}       
+          alt="heart-inactive"
+          width="36px"
+          height="36px"
+        />
+        <p>{{post.like}} Likes</p>
+      </button>
+      <input type="text" placeholder="Write a comment" />
+    </div>
+  </div>
+{% endfor %}
+</main>
+{% endblock %}
+
+<!-- 
+<div class="post">
+  <div class="post-top">
+    <div>
+      <img
+        src="/static/images/zyad.jpg"
+        alt="zyad"
+        width="50px"
+        height="50px"
+      />
+      <div>
+        <h4>Zyad Hany</h4>
+        <p>7/21/2023</p>
+      </div>
+    </div>
+    <div style="visibility: hidden;">
+      <img
+        src="/static/images/icons/trash.svg"
+        alt="trash"
+        width="35px"
+        height="35px"
+      />
+    </div>
+  </div>
+  <img src="/static/images/download.jpg" alt="italy" />
+  <p style="text-align: justify">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed
+    nisi tortor. Curabitur mauris purus, maximus vitae malesuada quis,
+    auctor eu lacus. Pellentesque ut auctor libero. Cras vitae arcu a leo
+    sollicitudin portt
+  </p>
+  <div class="post-bottom">
+    <button>
+      <img
+        src="/static/images/icons/heart-inactive.svg"
+        alt="heart-inactive"
+        width="36px"
+        height="36px"
+      />
+      <p>23 Likes</p>
+    </button>
+    <input type="text" placeholder="Write a comment" />
+  </div>
+</div> -->

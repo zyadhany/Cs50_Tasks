@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #3b5998;
+  --second: #8b9dc3;
+  --light-blue: #dfe3ee;
+  --semi-white: #f7f7f7;
+  --hover: #3f5ea1;
+  --white: #ffffff;
+}
+
+html {
+  position: relative;
+  overflow: hidden;
+}
+
+body,
+html {
+  background-color: var(--white);
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  font-size: 18px;
+}
+
+body {
+  background-color: transparent;
+}
+
+#canva {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  gap: 20px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+  padding: 15px;
+  border-radius: 2px;
+}
+
+.input_div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.input_div input {
+  width: 300px;
+  height: 30px;
+  padding: 14px 5px;
+  font-size: 18px;
+}
+
+.input_div label {
+  font-size: 18px;
+}
+
+.input_div input:focus {
+  outline: none;
+}
+
+#form button + a {
+  text-decoration: none;
+  text-align: center;
+  padding: 5px 10px;
+  background-color: #1b6b93;
+}
+
+#form button {
+  background-color: var(--primary);
+}
+
+#form button,
+#form button + a {
+  border: 0;
+  color: var(--semi-white);
+  padding: 5px 10px;
+  font-size: 16px;
+  height: 40px;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#form button:hover,
+#form button + a:hover {
+  background-color: var(--hover);
+}
+
+#buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.error-message {
+  align-self: center;
+  color: rgb(214, 14, 14);
+}
+

@@ -1,0 +1,42 @@
+{% extends "loging_page.html" %}
+
+{% block main %}
+<form action="/login" method="post" id="form">
+    <div class="error-message">
+      <h4>{{ message }}</h4>
+    </div>
+    <div class="input_div">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        autofocus
+        name="username"
+        id="username"
+        placeholder="Username"
+        type="text"
+        required
+        autocomplete="off"
+      />
+    </div>
+    <div class="input_div">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        autofocus
+        name="password"
+        id="password"
+        placeholder="password"
+        type="password"
+        required
+        autocomplete="off"
+      />
+    </div>
+    <div id="buttons">
+      <button type="submit">Log In</button>
+      <a href="/register">Sign up</a>
+    </div>
+  </form>
+{% endblock %}
+
+                
+   

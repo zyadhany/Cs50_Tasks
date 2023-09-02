@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+{% block style %}
+<link rel="stylesheet" href="/static/css/profile.css" />
+{% endblock %}
+{% block main %}
+<div id="mainProfile">
+  <div>
+    <div id="Data-prof">
+      <h2>My Profile</h2>
+      <div style="width: 100%;">
+        <img
+          src="/static/images/user_image/{{me['id']}}.png"
+          alt="zyad"
+          width="120px"
+          height="120px"
+        />
+        <p>{{me['username']}}</p>
+        <article>
+          <h4>About Me</h4>
+          <p>
+            {{me['about']}}
+          </p>
+        </article>
+      </div>
+    </div>
+    <form
+      id="profile"
+      action="/profile"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <label for="aboutMe">About Me</label>
+      <textarea name="about" id="aboutMe" cols="30" rows="5"></textarea>
+      <div class="profile-update"></div>
+      <label for="upload_image" id="profile_img" >Upload image</label>
+      <h5 id="profile_lable"></h5>
+      <input type="file" name="image" id="upload_image" 
+      onchange="
+        document.getElementById('profile_lable').innerHTML = this.files[0].name;
+        document.getElementById('profile_img').setAttribute('style', 'background-color: #0ec326;');
+      "/>
+      <button type="submit">Update</button>
+    </form>
+  </div>
+  <div id="create_posts">
+    <h2>My Posts</h2>
+    <form
+      id="pubPost"
+      action="/upload"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <textarea
+        name="text"
+        id="post_data"
+        cols="30"
+        rows="5"
+        placeholder="Write your Post"
+      ></textarea>
+      <label for="image">
+        <img
+          src="/static/images/icons/img.svg"
+          alt="img"
+          width="40px"
+          height="40px"
+          id="img_lable"
+        />
+        <h5 id="upload_lable"></h5>
+      </label>
+      <input type="file" name="image" id="image" 
+      onchange="
+        document.getElementById('upload_lable').innerHTML = this.files[0].name;
+        document.getElementById('img_lable').setAttribute('src', '/static/images/icons/img_uploaded.svg');
+      "/>
+      <button type="submit" id="publish">publish</button>
+    </form>
+    <main>
+      {% for post in posts %}
+        <div class="post">
+          <div class="post-top">
+            <div class="left-top" onclick="goProf({{post['user_id']}})">
+              <img
+                src="/static/images/user_image/{{post['user_id']}}.png"
+                alt="user_image"
+                width="50px"
+                height="50px"
+              />
+              <div>
+                <h4>{{post['name']}}</h4>
+                <p>{{post['date']}}</p>
+              </div>
+            </div>
+            <div
+            {% if me['id'] != post['user_id'] %}
+            style="visibility: hidden;"
+            {% endif %}
+            onclick="delete_post({{post.id}})"
+            >
+              <img
+                src="/static/images/icons/trash.svg"
+                alt="trash"
+                width="35px"
+                height="35px"
+              />
+            </div>
+          </div>
+          <img src="/static/images/post_images/{{post['id']}}.png" alt="italy" />
+          <p style="text-align: justify">
+            {{post['text']}}
+          </p>
+          <div class="post-bottom">
+            <button>
+              <img
+                {% if post.islike %}
+                onclick="dislike({{post.id}})"
+                src="/static/images/icons/heart-active.svg"
+                {% else %}
+                onclick="like({{post.id}})"
+                src="/static/images/icons/heart-inactive.svg"
+                {% endif %}       
+                alt="heart-inactive"
+                width="36px"
+                height="36px"
+              />
+              <p>{{post.like}} Likes</p>
+            </button>
+            <input type="text" placeholder="Write a comment" />
+          </div>
+        </div>
+      {% endfor %}
+    </main>
+  </div>
+</div>
+
+{% endblock %}
+
