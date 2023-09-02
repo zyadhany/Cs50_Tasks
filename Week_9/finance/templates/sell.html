@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="mb-3">
+            <select autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="symbol">
+                <option value="">Select a symbol</option>
+                {% for suck in stock %}
+                <option value="{{suck["suck"]}}">{{suck["suck"]}}</option>
+                {% endfor %}
+                <!-- Add more options here -->
+              </select>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="shares" placeholder="shares" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+{% endblock %}

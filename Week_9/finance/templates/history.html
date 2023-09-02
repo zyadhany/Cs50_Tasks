@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+    <table>
+        <thead>
+            <tr>
+                <th>sympol</th>
+                <th>shares</th>
+                <th>type</th>
+                <th>Total cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- TODO: Loop through the database entries to display them in this table -->
+            {% for suck in stock %}
+                <tr>
+                    <td>{{ suck["suck"] }}</td>
+                    <td>{{ suck["share_num"] }}</td>
+                    <td>{{ suck["status"] }}</td>
+                    <td>{{ suck["total"] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

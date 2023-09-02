@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            let options = ['#top','#mid','#bot'];
+            function getval(n , txt) {
+                let color,ans;
+                if(n){
+                    color = "red";
+                    ans = "Incorrect"
+                }else{
+                    color = "green";
+                    ans = "Correct!";
+                }
+                for (let i = 0; i < 3; i++) {
+                    if (options[i] === txt) {
+                        document.querySelector(options[i]).style.backgroundColor = color;
+                    }else{
+                         document.querySelector(options[i]).style.backgroundColor = '#d9edff';
+                    }
+                }
+                document.querySelector('#answer').innerHTML = ans;
+            }
+
+            function conf() {
+                opp = document.querySelector('#free');
+                let color,ans;
+
+                if(opp.value.toLowerCase() == 'riot'){
+                    color = "green";
+                    ans = "Correct!";
+                }else{
+                    color = "red";
+                    ans = "Incorrect"
+                }
+                opp.style.backgroundColor = color;
+                document.querySelector('#answer2').innerHTML = ans;
+            }
+
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <h3>What is the main lane for Urgot at League of legands?</h3>
+                <div id="answer"></div>
+                <button onclick="getval(0 , '#top')" id="top">Top</button>
+                <button onclick="getval(1 , '#mid')" id="mid">Mid</button>
+                <button onclick="getval(1, '#bot')" id="bot">Bot</button>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>Which compny own League of legands?</h3>
+                <div id="answer2"></div>
+                <input type="text" name="ans" id="free">
+                <button onclick="conf()">confirm!</button>
+                <!-- TODO: Add free response question here -->
+            </div>
+        </div>
+    </body>
+</html>
